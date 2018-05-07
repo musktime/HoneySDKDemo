@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.honeywell.android.login.HoneyHelper;
+import com.honeywell.android.login.JsonUtils;
 import com.honeywell.obd.api.DetectionManager;
 import com.honeywell.obd.api.FuelManager;
 import com.honeywell.obd.api.callback.DetectionListening;
@@ -44,7 +45,7 @@ public class CarActivity extends Activity {
     private static final int UPDATE_DECT=1;
     private static final int UPDATE_FUEL=2;
 
-    private Handler handler=new CarHandler(this);
+    private final Handler handler=new CarHandler(this);
     private static class CarHandler extends Handler{
 
         private WeakReference<CarActivity>mActivity;
@@ -225,6 +226,7 @@ public class CarActivity extends Activity {
                 detection.setClickable(true);
                 Log.i("musk","---detectionOver--"+s);
                 connectTip.setText(s);
+                JsonUtils.parseJSons(s);
             }
 
             @Override

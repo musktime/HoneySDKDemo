@@ -93,6 +93,7 @@ public class HoneyHelper {
                             isRegistered=true;
                         }*/
                     }
+                    response.body().close();
                 } catch (IOException e) {
                     e.printStackTrace();
                     iLogin.onFailed(e.getMessage());
@@ -134,6 +135,7 @@ public class HoneyHelper {
                     Response response = call.execute();
                     Log.i("musk", "==bindObd==" + response);
                     iBindOBD.onSuccess(response.toString());
+                    response.body().close();
                 } catch (IOException e) {
                     e.printStackTrace();
                     iBindOBD.onFailed(e.getMessage());
@@ -212,6 +214,7 @@ public class HoneyHelper {
                     Response response = call.execute();
                     Log.i("musk", "==registerCar==" + response);
                     iRegisterCar.onSuccess(response.toString());
+                    response.body().close();
                 } catch (IOException e) {
                     e.printStackTrace();
                     iRegisterCar.onFailed(e.getMessage());
