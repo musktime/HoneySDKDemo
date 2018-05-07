@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_user_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="用户未注册登录！"/>
+        <TextView
+            android:id="@+id/tv_car_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="车辆未注册！"/>
+        <TextView
+            android:id="@+id/tv_obd_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="OBD设备未绑定！"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#567899"
+            android:gravity="center_horizontal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="用户id暂时默认为设备序列号"/>
+
+            <Button
+                android:layout_weight="3"
+                android:id="@+id/register_user"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="注册登录"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_vin"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:hint="请填写驾驶证上的车架号"/>
+        <EditText
+            android:id="@+id/et_plate_number"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:hint="请填写车辆车牌"/>
+        <EditText
+            android:id="@+id/et_engine_number"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:hint="请填写车辆的发动机号"/>
+
+        <EditText
+            android:id="@+id/et_car_pl"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:hint="请填写车辆的排量，比如1.8"/>
+        <EditText
+            android:id="@+id/et_engine_type"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:hint="请填写车辆的发动机类型："/>
+
+        <Button
+            android:id="@+id/register_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="注册车辆"/>
+
+
+        <EditText
+            android:id="@+id/et_obd"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请填写OBD设备的串码"/>
+        <Button
+            android:id="@+id/bind_obd"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:text="绑定OBD"/>
+
+        <Button
+            android:id="@+id/go_test"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            android:text="去测试"/>
+
+    </LinearLayout>
+</ScrollView>
