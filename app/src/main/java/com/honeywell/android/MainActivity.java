@@ -160,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void goCarActivity(){
         if(userRegisterSuccess && carRegisterSuccess && obdBindSuccess){
-            Intent intent = new Intent(this,CarActivity.class);
-            intent.putExtra("carInfo",carData);
+            Intent intent = new Intent(this,DetectActivity.class);
+            intent.putExtra("car",carData);
             intent.putExtra("obd",obdName);
             startActivity(intent);
         }

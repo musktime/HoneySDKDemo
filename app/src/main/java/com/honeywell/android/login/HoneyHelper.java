@@ -1,12 +1,19 @@
 package com.honeywell.android.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.honeywell.obd.api.DetectionManager;
+import com.honeywell.obd.api.FuelManager;
+import com.honeywell.obd.api.callback.DetectionListening;
+import com.honeywell.obd.api.callback.FuelListening;
+import com.honeywell.obd.bean.CarData;
 import com.honeywell.obd.net.HoneySDK;
+import com.honeywell.obd.service.BtnConnectManage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,13 +41,19 @@ public class HoneyHelper {
 //    public static final String OBD_NAME="HON11CK8Q5C3";
     private static final String DEVICE_ID="205d5401";//手机和OBD会绑定，必须保持一致
 
-    private static boolean isRegistered=false;
+    private BtnConnectManage btnConnectManage;
+    private DetectionManager detectionManager;
+    private FuelManager fuelManager;
 
+    private CarData carData;
     private String sessionId="";
 
 
     private static HoneyHelper sInstance=null;
     private HoneyHelper(){
+        btnConnectManage=new BtnConnectManage();
+        detectionManager=new DetectionManager();
+        fuelManager=new FuelManager();
     }
     public static HoneyHelper getInstance(){
         if(sInstance==null){
@@ -51,6 +64,14 @@ public class HoneyHelper {
             }
         }
         return sInstance;
+    }
+
+    public CarData getCarData() {
+        return carData;
+    }
+
+    public void setCarData(CarData carData) {
+        this.carData = carData;
     }
 
     public  void login(ILogin iLogin) {
@@ -191,7 +212,7 @@ public class HoneyHelper {
             jsonObject.put("EngineNumber", engineNumber);
             jsonObject.put("CarBrand", "京A8888");
             jsonObject.put("CarType", "yueye");
-            jsonObject.put("Ssnf", "2018");
+            //jsonObject.put("Ssnf", "2018");
             jsonObject.put("PL", pailiang);
             jsonObject.put("EngineType", "1");
             Log.i("musk","==jsonObject.toString()=="+jsonObject.toString());
@@ -221,5 +242,40 @@ public class HoneyHelper {
                 }
             }
         }).start();
+    }
+
+    /**
+     * 连接OBD
+     * @param context
+     * @param obdName
+     * @param callback
+     */
+    public void connectOBD(Context context,String obdName,BtnConnectManage.Callback callback){
+        if(TextUtils.isEmpty(obdName)){
+            return;
+        }
+        btnConnectManage.connect(context, obdName, callback);
+    }
+
+    /**
+     * 检测模式
+     * @param context
+     * @param listener
+     */
+    public void startDection(Activity context,DetectionListening listener){
+        if(carData==null)
+            return;
+        detectionManager.startDetection(context,carData,listener);
+    }
+
+    /**
+     * 监控模式
+     * @param context
+     * @param listener
+     */
+    public void startFuel(Activity context,FuelListening listener){
+        if(carData==null)
+            return;
+        fuelManager.startFuel(context,carData,listener);
     }
 }

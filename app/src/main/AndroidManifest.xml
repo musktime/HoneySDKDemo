@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CarActivity"/>
+        <activity android:name=".DetectActivity"/>
         <meta-data
             android:name="Tenant_ID"
             android:value="200" />

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.honeywell.android.login.HoneyHelper;
 import com.honeywell.android.login.JsonUtils;
 import com.honeywell.obd.api.DetectionManager;
 import com.honeywell.obd.api.FuelManager;
@@ -33,7 +31,7 @@ import java.lang.ref.WeakReference;
  * Created by musk on 2018/5/2.
  */
 
-public class CarActivity extends Activity {
+public class DetectActivity extends Activity {
     Button connect, detection, fuel;
     TextView connectTip;
     DetectionManager detectionManager;
@@ -48,10 +46,10 @@ public class CarActivity extends Activity {
     private final Handler handler=new CarHandler(this);
     private static class CarHandler extends Handler{
 
-        private WeakReference<CarActivity>mActivity;
+        private WeakReference<DetectActivity>mActivity;
 
-        public CarHandler(CarActivity activity){
-            mActivity=new WeakReference<CarActivity>(activity);
+        public CarHandler(DetectActivity activity){
+            mActivity=new WeakReference<DetectActivity>(activity);
         }
 
         @Override
@@ -60,7 +58,7 @@ public class CarActivity extends Activity {
             if(mActivity.get()==null){
                 return;
             }
-            CarActivity carActivity=mActivity.get();
+            DetectActivity carActivity=mActivity.get();
             switch(msg.what){
                 case UPDATE_FUEL:
                     FuelParams params= (FuelParams) msg.obj;
@@ -93,7 +91,7 @@ public class CarActivity extends Activity {
         fuelManager = new FuelManager();
 
         Intent intent=getIntent();
-        carData=intent.getParcelableExtra("carInfo");
+        carData=intent.getParcelableExtra("car");
         obdName=intent.getStringExtra("obd");
 
         connect.setOnClickListener(v -> {
